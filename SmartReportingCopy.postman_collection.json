@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "4995cde1-f1f3-4fa4-b82c-007270f72281",
+		"name": "SmartReporting Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "Returns a list of available currencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/conversions/currencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"conversions",
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Converts the provided value to the desired currency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"from\": \"EUR\",\r\n    \"to\": \"YEN\",\r\n    \"value\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:80/conversions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"conversions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
